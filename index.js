@@ -7,14 +7,13 @@ const PORT = process.env.PORT || 3001 ;
 import cors from 'cors';
 //connecting to the Database 
 connectDb();
-
+app.use(cors({origin:'*'})); 
 app.use(express.json());
-
 //the api main routes 
 app.use('/api',main);
 
 app.use(express.urlencoded({extended:true}));
-app.use(cors({origin:'*'})); 
+
 
 // wrong url input given from the user 
 app.all('*',(req,res)=> {
