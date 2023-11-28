@@ -8,7 +8,7 @@ import { Products} from "../models/Products.js";
 export const getMenu = async ()=> {
     //get all products from the database
     try {
-        const products = await Products.find({});
+        const products = await Products.find({}, {_id:0, __v:0});
         return products; 
 
     } catch (error) {
