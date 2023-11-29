@@ -5,6 +5,10 @@ import { router as main} from "./router/main.js";
 const app = express();
 const PORT = process.env.PORT || 3001 ; 
 import cors from 'cors';
+
+
+//~~~published version of the app~~~//
+
 //connecting to the Database 
 connectDb();
 app.use(cors({origin:'*'})); 
