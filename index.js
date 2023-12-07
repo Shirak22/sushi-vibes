@@ -1,22 +1,29 @@
 import  express from 'express'
+
 import 'dotenv/config';
 import { connectDb } from "./configs/db.js";
 import { router as main} from "./router/main.js";
+import { router as worker} from "./router/worker.js";
 const app = express();
 const PORT = process.env.PORT || 3001 ; 
 import cors from 'cors';
 
 
-//~~~published version of the app~~~//
 
 //connecting to the Database 
 connectDb();
-app.use(cors({origin:'*'})); 
+
+//middlewares
 app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use(cors({origin:'*'})); 
+
+
 //the api main routes 
 app.use('/api',main);
+app.use('/api/worker',worker);
 
-app.use(express.urlencoded({extended:true}));
+
 
 
 // wrong url input given from the user 
@@ -26,10 +33,6 @@ app.all('*',(req,res)=> {
         message:'The page not found! '
     });
 });
-
-
-
-
 
 
 
